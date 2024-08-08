@@ -22,7 +22,7 @@ Rockbuster relational database management system and Postgre SQL were used for t
 
 ## Visulizations
 
-Rockbuster movie rental service company currently offer a selection of 1000 films exclusively in the English language, across 17 different categories in 109 country. 
+Rockbuster movie rental service company currently offer a selection of 1000 films exclusively in the English language, across 17 different categories in 109 countries. 
 Take a look at [Rockbuster Tableau Workbook](https://public.tableau.com/app/profile/srilatha.kummari/viz/RockbusterMovieRentalAnalysis_17192705507430/Story?publish=yes)
 
 
