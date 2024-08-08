@@ -15,3 +15,64 @@ Group By
 D.country 
 ORDER BY number_of_customers DESC 
 LIMIT 10; 
+
+# SQL query to identify the top 10 cities that fall within the top 10 countries
+SELECT 
+C.city, 
+D.country, 
+COUNT(A.customer_id) AS number_of_customers 
+FROM  
+customer A 
+JOIN  address B ON A.address_id = B.address_id 
+JOIN  city C ON B.city_id = C.city_id JOIN 
+  	country D ON C.country_id = D.country_id 
+WHERE  
+D.country IN (  
+SELECT country  
+FROM customer A 
+JOIN  address B ON A.address_id = B.address_id 
+JOIN 
+ 	City C ON B.city_id = C.city_id 
+JOIN 
+ 	Country D ON C.country_id = D.country_id 
+Group By  
+D.country 
+ORDER BY number_of_customers DESC 
+LIMIT 10; 
+) 
+GROUP BY  
+C.city, D.country  
+ORDER BY  
+number_of_customers DESC  
+LIMIT 10; 
+
+# SQL query to identify top 5 customers based on the country and city
+SELECT 
+ A.customer_id, 
+ A.first_name,  
+A.last_name, 
+D.country, 
+C.city,  
+SUM(B.amount) AS total_amount_paid 
+FROM  customer A  
+JOIN payment B ON A.customer_id = B.customer_id  
+JOIN address E ON A.address_id = E.address_id  
+JOIN city C ON E.city_id = C.city_id  
+JOIN country D ON C.country_id = D.country_id 
+WHERE  
+C.city IN ( 
+SELECT city  
+FROM Customer A 
+JOIN address E ON A.address_id = E.address_id  
+JOIN city C ON E.city_id = C.city_id 
+JOIN country D ON C.country_id = D.country_id  
+GROUP BY  
+C.city  
+ORDER BY  
+COUNT(A.customer_id) DESC  LIMIT 10 
+) 
+GROUP BY  
+A.customer_id, A.first_name, A.last_name, D.country, C.city  
+ORDER BY  total_amount_paid DESC LIMIT  
+5; 
+ 
