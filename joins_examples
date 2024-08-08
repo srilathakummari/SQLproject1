@@ -1,1 +1,17 @@
+# SQL query to identify the top 10 countries where Rockbuster customers are based 
 
+SELECT  
+D.country 
+COUNT(A.customer_id) AS number_of_customers 
+FROM  
+ 	Customer A 
+JOIN 
+ 	address B ON A.address_id = B.address_id 
+JOIN 
+ 	City C ON B.city_id = C.city_id 
+JOIN 
+ 	Country D ON C.country_id = D.country_id 
+Group By  
+D.country 
+ORDER BY number_of_customers DESC 
+LIMIT 10; 
